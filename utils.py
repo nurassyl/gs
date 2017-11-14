@@ -51,26 +51,55 @@ KZ_WORDS = [
     'тіл',
     'әлем',
     'ең',
-    'бай'
+    'бай',
+    'электр',
+    'тоқ',
+    'тоғ', # тоғы
+    'құр'
 ]
-
-import re
-def get_kz_words(text):
-    FINDED_CYRILLIC_WORDS = list()
-
-    for kz_word in KZ_WORDS:
-        words = re.findall(r'(({})([аәбвгғдеёжзийкқлмнңоөпрстуұүфхһцчшщъыіьэюя]*))'.format(kz_word), text, flags=re.I)
-        for i in range(0, len(words)):
-            FINDED_CYRILLIC_WORDS.append(words[i][0])
-            del i
-        del kz_word, words
-    return FINDED_CYRILLIC_WORDS
-
-
-input = 'Қазақ еліндегі қазақ тілі әлемдегі ең бай тіл!'
-for word in get_kz_words(input):
-    input = re.sub(word, convert_to_latin(word), input)
+KZ_WORDS.sort(key = len, reverse=True)
+REPAIRED_WORD_FROM_LATIN = dict()
+for word in KZ_WORDS:
+    REPAIRED_WORD_FROM_LATIN[ convert_to_cyrillic(convert_to_latin(word)) ] = word
     del word
+import re
+def get_cyrillic_words(text):
+    FINDED_WORDS = list()
 
-print(input)
-del input
+    for word in KZ_WORDS:
+        words = re.findall(r'(({})([аәбвгғдеёжзийкқлмнңоөпрстуұүфхһцчшщъыіьэюя]*))'.format(word), text, flags=re.I)
+        for i in range(0, len(words)):
+            FINDED_WORDS.append(words[i][0])
+            del i
+        del word, words
+
+    return FINDED_WORDS
+
+def get_latin_words(text):
+    FINDED_WORDS = list()
+
+    for word in KZ_WORDS:
+        word = convert_to_latin(word)
+        words = re.findall(r'(({})([aäbvgğdejzïïkqlmnŋoöprstwuüfhhcčšşyi]*))'.format(word), text, flags=re.I)
+        for i in range(0, len(words)):
+            FINDED_WORDS.append(words[i][0])
+            del i
+        del word, words
+
+    return FINDED_WORDS
+
+CONVERTED_KZ_WORDS_FROM_LATIN = list()
+for word in KZ_WORDS:
+    CONVERTED_KZ_WORDS_FROM_LATIN.append( convert_to_cyrillic(convert_to_latin(word)) )
+    del word
+def get_cyrillic_words_from_latin(text):
+    FINDED_WORDS = list()
+
+    for word in CONVERTED_KZ_WORDS_FROM_LATIN:
+        words = re.findall(r'({})'.format(word), text, flags=re.I)
+        for w in words:
+            FINDED_WORDS.append(w)
+            del w
+        del word, words
+
+    return FINDED_WORDS
