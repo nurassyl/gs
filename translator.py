@@ -43,3 +43,34 @@ def convert_to_cyrillic(word):
         word = word.replace(LATIN_TO_CYRILLIC[0][i], LATIN_TO_CYRILLIC[1][i])
     
     return normalize(word, wc)
+
+
+KZ_WORDS = [
+    'қазақ',
+    'ел',
+    'тіл',
+    'әлем',
+    'ең',
+    'бай'
+]
+
+import re
+def get_kz_words(text):
+    FINDED_CYRILLIC_WORDS = list()
+
+    for kz_word in KZ_WORDS:
+        words = re.findall(r'(({})([аәбвгғдеёжзийкқлмнңоөпрстуұүфхһцчшщъыіьэюя]*))'.format(kz_word), text, flags=re.I)
+        for i in range(0, len(words)):
+            FINDED_CYRILLIC_WORDS.append(words[i][0])
+            del i
+        del kz_word, words
+    return FINDED_CYRILLIC_WORDS
+
+
+input = 'Қазақ еліндегі қазақ тілі әлемдегі ең бай тіл!'
+for word in get_kz_words(input):
+    input = re.sub(word, convert_to_latin(word), input)
+    del word
+
+print(input)
+del input
