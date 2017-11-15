@@ -1,6 +1,6 @@
 TOTE = {
     "a": "ا",
-    "ä": "ٴا",
+    "ä": "ا",
     "b": "ب",
     "v": "ۆ",
     "g": "گ",
@@ -24,7 +24,7 @@ TOTE = {
     "t": "ت",
     "w": "ۋ",
     "u": "ۇ",
-    "ü": "ٴۇ",
+    "ü": "ۇ",
     "f": "ف",
     "h": "ح",
     "c": "س",
@@ -32,21 +32,17 @@ TOTE = {
     "š": "ش",
     "ş": "ٴش",
     "y": "ى",
-    "i": "ى"
+    "i": "ى",
 }
-TOTE_KEYS = TOTE.copy().keys()
-
-for k in TOTE_KEYS:
-    TOTE[k.upper()] = TOTE[k]
-
 
 
 def latin_to_tote(value):
+    value = value.lower()
     for k, v in TOTE.items():
         value = value.replace(k, v)
-    return value.lower()
+    return value
 
 def tote_to_latin(value):
     for k, v in TOTE.items():
         value = value.replace(v, k)
-    return value.lower()
+    return value
