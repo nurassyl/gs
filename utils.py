@@ -44,15 +44,6 @@ def convert_to_cyrillic(word):
     
     return normalize(word, wc)
 
-def convert_to_tote(word):
-    wc = what_case(word)
-    word = word.lower()
-
-    for i in range(0, len(CYRILLIC_TO_TOTE[0])):
-        word = word.replace(CYRILLIC_TO_TOTE[0][i], CYRILLIC_TO_TOTE[1][i])
-    
-    return normalize(word, wc)
-
 KZ_WORDS = [
     'қазақ',
     'ел',
@@ -79,7 +70,8 @@ KZ_WORDS = [
     'мәр',
     'қаһарман',
     'бат',
-    'ірімшік'
+    'ірі',
+    'көр',
 ]
 
 KZ_WORDS.sort(key = len, reverse=True)
