@@ -47,7 +47,7 @@ def convert_to_cyrillic(word):
 KZ_WORDS = [
     'қазақ',
     'ел',
-    'тіл',
+    'тілі',
     'әлем',
     'ең',
     'бай',
@@ -74,14 +74,17 @@ KZ_WORDS = [
     'көр',
 ]
 
+# Ең көп әріптен тұратын сөздерді алдыға қою.
 KZ_WORDS.sort(key = len, reverse=True)
 
-REPAIRED_WORD_FROM_LATIN = dict()
+# Кириллицадан тұратын сөздерді латын сөзіне ауыстырып және оларды қайта кириллицаға конверттау.
+REPAIRED_WORD_FROM_LATIN = dict() # Мысалға: "електр": "электр"
 for word in KZ_WORDS:
     REPAIRED_WORD_FROM_LATIN[ convert_to_cyrillic(convert_to_latin(word)) ] = word
     del word
 
 import re
+# Қазақша кириллица сөздерді табу.
 def get_cyrillic_words(text):
     FINDED_WORDS = list()
 
@@ -94,6 +97,7 @@ def get_cyrillic_words(text):
 
     return FINDED_WORDS
 
+# Қазақша латын сөздерді табу.
 def get_latin_words(text):
     FINDED_WORDS = list()
 
@@ -107,15 +111,15 @@ def get_latin_words(text):
 
     return FINDED_WORDS
 
-CONVERTED_KZ_WORDS_FROM_LATIN = list()
+# Латыншадан кириллицаға аударылған кириллица сөздерді табу.
+FINDED_CYRILLIC_WORDS_FROM_TEXT = list()
 for word in KZ_WORDS:
-    CONVERTED_KZ_WORDS_FROM_LATIN.append( convert_to_cyrillic(convert_to_latin(word)) )
+    FINDED_CYRILLIC_WORDS_FROM_TEXT.append( convert_to_cyrillic(convert_to_latin(word)) )
     del word
-
-def get_cyrillic_words_from_latin(text):
+def find_cyrillic_words_from_text(text):
     FINDED_WORDS = list()
 
-    for word in CONVERTED_KZ_WORDS_FROM_LATIN:
+    for word in FINDED_CYRILLIC_WORDS_FROM_TEXT:
         words = re.findall(r'({})'.format(word), text, flags=re.I)
         for w in words:
             FINDED_WORDS.append(w)

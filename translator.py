@@ -24,9 +24,9 @@ def tote_to_cyril(input):
 def tote_to_lat(input):
     return tote_to_latin(input)
 
-# print(cyril_to_lat('Қазақ тілі'))
-# print(cyril_to_tote('Қазақ тілі'))
-# print(lat_to_cyril('Qazaq tili'))
-# print(lat_to_tote('Qazaq tili'))
-# print(tote_to_cyril( cyril_to_tote('Қазақ тілі') ))
-# print(tote_to_lat( cyril_to_tote('Қазақ тілі') ))
+print(cyril_to_lat('Қазақ тілі'))
+print(cyril_to_tote('Қазақ тілі'))
+print(lat_to_cyril('Qazaq tili'))
+print(lat_to_tote('Qazaq tili'))
+print(tote_to_cyril('قازاق تىلى'))
+print(tote_to_lat('قازاق تىلى'))

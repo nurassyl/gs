@@ -7,7 +7,7 @@ def latin_to_cyrillic(input):
         input = re.sub(word, convert_to_cyrillic(word), input)
         del word
 
-    for word in get_cyrillic_words_from_latin(input):
+    for word in find_cyrillic_words_from_text(input):
         original = word
         wc = what_case(word)
         word = word.lower()

@@ -44,7 +44,7 @@ for k in TOTE_KEYS:
 def latin_to_tote(value):
     for k, v in TOTE.items():
         value = value.replace(k, v)
-    return value
+    return value.lower()
 
 def tote_to_latin(value):
     for k, v in TOTE.items():
