@@ -22,8 +22,8 @@ CYRILLIC_TO_LATIN = [
 # "ч" әріпінен тұратын "щетка" сөзі бар.
 # "э" әріпінен тұратын "электр" сөзі бар.
 LATIN_TO_CYRILLIC = [
-    ["aï", "äï", "oï", "öï", "ïw", "ïa", "ïo", "a", "ä", "b", "v", "g", "ğ", "d", "e", "j", "z", "ï", "ï", "k", "q", "l", "m", "n", "ŋ", "o", "ö", "p", "r", "s", "t", "w", "u", "ü", "f", "h", "h", "c", "č", "š", "ş", "", "y", "i", "", "e"],
-    ["ай", "әй", "ой", "өй", "ю", "я", "ё", "а", "ә", "б", "в", "г", "ғ", "д", "е", "ж", "з", "и", "й", "к", "қ", "л", "м", "н", "ң", "о", "ө", "п", "р", "с", "т", "у", "ұ", "ү", "ф", "х", "һ", "ц", "ч", "ш", "щ", "", "ы", "і", "", "э"]
+    ["ұй", "үй", "уй", "ый", "ей", "эй", "aï", "äï", "oï", "öï", "ïw", "ïa", "ïo", "a", "ä", "b", "v", "g", "ğ", "d", "e", "j", "z", "ï", "ï", "k", "q", "l", "m", "n", "ŋ", "o", "ö", "p", "r", "s", "t", "w", "u", "ü", "f", "h", "h", "c", "č", "š", "ş", "", "y", "i", "", "e"],
+    ["uï", "üï", "wï", "yï", "eï", "eï", "ай", "әй", "ой", "өй", "ю", "я", "ё", "а", "ә", "б", "в", "г", "ғ", "д", "е", "ж", "з", "и", "й", "к", "қ", "л", "м", "н", "ң", "о", "ө", "п", "р", "с", "т", "у", "ұ", "ү", "ф", "х", "һ", "ц", "ч", "ш", "щ", "", "ы", "і", "", "э"]
 ]
 
 def convert_to_latin(word):
@@ -44,6 +44,14 @@ def convert_to_cyrillic(word):
     
     return normalize(word, wc)
 
+def convert_to_tote(word):
+    wc = what_case(word)
+    word = word.lower()
+
+    for i in range(0, len(CYRILLIC_TO_TOTE[0])):
+        word = word.replace(CYRILLIC_TO_TOTE[0][i], CYRILLIC_TO_TOTE[1][i])
+    
+    return normalize(word, wc)
 
 KZ_WORDS = [
     'қазақ',
@@ -55,13 +63,32 @@ KZ_WORDS = [
     'электр',
     'тоқ',
     'тоғ', # тоғы
-    'құр'
+    'құр',
+    'эх',
+    'жар',
+    'сүй',
+    'сүт'
+    'ет',
+    'сол',
+    'ар',
+    'мен',
+    'асыл',
+    'сөз',
+    'сен',
+    'ең',
+    'мәр',
+    'қаһарман',
+    'бат',
+    'ірімшік'
 ]
+
 KZ_WORDS.sort(key = len, reverse=True)
+
 REPAIRED_WORD_FROM_LATIN = dict()
 for word in KZ_WORDS:
     REPAIRED_WORD_FROM_LATIN[ convert_to_cyrillic(convert_to_latin(word)) ] = word
     del word
+
 import re
 def get_cyrillic_words(text):
     FINDED_WORDS = list()
@@ -92,6 +119,7 @@ CONVERTED_KZ_WORDS_FROM_LATIN = list()
 for word in KZ_WORDS:
     CONVERTED_KZ_WORDS_FROM_LATIN.append( convert_to_cyrillic(convert_to_latin(word)) )
     del word
+
 def get_cyrillic_words_from_latin(text):
     FINDED_WORDS = list()
 
