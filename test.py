@@ -1,5 +1,5 @@
-from gss.dictionary import *
-from gss.translator import *
+from gs.dictionary import *
+from gs.translator import *
 
 # 1 сөз = 100 байт.
 # 10 сөз = 1 Кбайт.

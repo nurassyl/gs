@@ -1,4 +1,4 @@
-from gss.converter import *
+from gs.converter import *
 
 def create_dict_cyrillic_latin(words):
     dictionary = dict()

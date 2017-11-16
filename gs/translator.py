@@ -1,6 +1,6 @@
-from gss.dictionary import *
-from gss.analyzer import *
-from gss.utils import *
+from gs.dictionary import *
+from gs.analyzer import *
+from gs.utils import *
 
 # letters: ('cyrillic', 'latin', 'tote')
 def __translate(text, _dict, letters='cyrillic'):
