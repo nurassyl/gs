@@ -1,4 +1,4 @@
-from utils import *
+from gss.utils import *
 
 # Cyrillic to latin.
 def cyrillic_to_latin(input):

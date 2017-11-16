@@ -17,9 +17,10 @@ sudo service mysql start
 ```
 mysql -h localhost -P 3306 -u root -p
 
-CREATE DATABASE `translator` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER DATABASE `translator` CHARACTER SET utf8 COLLATE utf8_bin;
-GRANT ALL ON `translator`.* TO 'root'@'localhost';
+DROP DATABASE IF EXISTS `gss`;
+CREATE DATABASE `gss` CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER DATABASE `gss` CHARACTER SET utf8 COLLATE utf8_bin;
+GRANT ALL ON `gss`.* TO 'root'@'localhost';
 system clear;
 exit
 ```
@@ -41,7 +42,7 @@ python3.6 server.py
 
 ##### **Configuration**
 ```
-export _APP_NAME=translator
+export _APP_NAME=GSS
 export FLASK_DEBUG=1
 
 export _MYSQL_HOST=127.0.0.1

@@ -8,4 +8,4 @@ DROP TABLE IF EXISTS words;
 SET foreign_key_checks = 1;
 
 SELECT 'OK';
-" | mysql -h "$_MYSQL_HOST" -P "$_MYSQL_PORT" -u "$_MYSQL_USER" --database="$_APP_NAME" --password="$_MYSQL_PASSWORD"
+" | mysql -h "$_MYSQL_HOST" -P "$_MYSQL_PORT" -u "$_MYSQL_USER" --database="${_APP_NAME,,}" --password="$_MYSQL_PASSWORD"

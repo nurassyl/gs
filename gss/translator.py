@@ -5,10 +5,10 @@
 # Tote to cyrillic
 # Tote to latyn.
 
-from cyrillic_to_latin import cyrillic_to_latin
-from latin_to_cyrillic import latin_to_cyrillic
-from tote import latin_to_tote, tote_to_latin
-from converter import *
+from gss.cyrillic_to_latin import cyrillic_to_latin
+from gss.latin_to_cyrillic import latin_to_cyrillic
+from gss.tote import latin_to_tote, tote_to_latin
+from gss.converter import *
 
 def translate_cyril_to_lat(input, with_converter=True):
     translated = cyrillic_to_latin(input)

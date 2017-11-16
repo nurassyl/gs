@@ -10,5 +10,5 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     word = Column(String(100), unique=True)
 
-engine = create_engine('mysql+pymysql://{}:{}@{}:{}/translator'.format(os.environ["_MYSQL_USER"], os.environ["_MYSQL_PASSWORD"], os.environ["_MYSQL_HOST"], os.environ["_MYSQL_PORT"], os.environ["_APP_NAME"]), echo=int(os.environ["FLASK_DEBUG"]))
+engine = create_engine('mysql+pymysql://{}:{}@{}:{}/{}'.format(os.environ["_MYSQL_USER"], os.environ["_MYSQL_PASSWORD"], os.environ["_MYSQL_HOST"], os.environ["_MYSQL_PORT"], os.environ["_APP_NAME"].lower()), echo=int(os.environ["FLASK_DEBUG"]))
 Base.metadata.create_all(engine)

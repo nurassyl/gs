@@ -1,5 +1,5 @@
-from utils import convert_to_latin, convert_to_cyrillic
-from tote import latin_to_tote, tote_to_latin
+from gss.utils import convert_to_latin, convert_to_cyrillic
+from gss.tote import latin_to_tote, tote_to_latin
 
 def convert_cyril_to_lat(input):
     return convert_to_latin(input)
