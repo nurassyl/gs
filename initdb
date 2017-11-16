@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# echo "Please enter the MySQL database password for \"$_MYSQL_HOST:$_MYSQL_PORT@root\""
 echo "
 SET autocommit = 0;
 SET default_storage_engine = 'InnoDB';
@@ -10,4 +11,4 @@ SET GLOBAL time_zone = '+00:00';
 SET SESSION time_zone = '+00:00';
 
 SELECT 'OK';
-" | mysql -h localhost -P 3306 -u root --password=12345
+" | mysql -h "$_MYSQL_HOST" -P "$_MYSQL_PORT" -u "$_MYSQL_USER" --password="$_MYSQL_PASSWORD"
