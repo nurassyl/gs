@@ -1,24 +1,48 @@
-from gss.utils import convert_to_latin, convert_to_cyrillic
-from gss.tote import latin_to_tote, tote_to_latin
+__CYRILLIC = (
+    ["а", "ә", "б", "в", "г", "ғ", "д", "е", "ё", "ж", "з", "и", "й", "к", "қ", "л", "м", "н", "ң", "о", "ө", "п", "р", "с", "т", "у", "ұ", "ү", "ф", "х", "һ", "ц", "ч", "ш", "щ", "ъ", "ы", "і", "ь", "э", "ю", "я"],
+    ["a", "ä", "b", "v", "g", "ğ", "d", "e", "ïo", "j", "z", "ï", "ï", "k", "q", "l", "m", "n", "ŋ", "o", "ö", "p", "r", "s", "t", "w", "u", "ü", "f", "h", "h", "c", "č", "š", "ş", "", "y", "i", "", "e", "ïw", "ïa"],
+    ["ا", "ا", "ب", "ۆ", "گ", "ع", "د", "ە", "يو", "ج", "ز", "ي", "ي", "ك", "ق", "ل", "م", "ن", "ڭ", "و", "و", "پ", "ر", "س", "ت", "ۋ", "ۇ", "ۇ", "ف", "ح", "ھ", "س", "چ", "ش", "ش", "", "ى", "ى", "", "ە", "يۋ", "يا"],
+)
+__LATIN = (
+    ["uï", "üï", "wï", "yï", "eï", "eï", "aï", "äï", "oï", "öï", "ïw", "ïa", "ïo", "a", "ä", "b", "v", "g", "ğ", "d", "e", "j", "z", "ï", "ï", "k", "q", "l", "m", "n", "ŋ", "o", "ö", "p", "r", "s", "t", "w", "u", "ü", "f", "h", "h", "c", "č", "š", "ş", "", "y", "i", "", "e"],
+    ["ұй", "үй", "уй", "ый", "ей", "эй", "ай", "әй", "ой", "өй", "ю", "я", "ё", "а", "ә", "б", "в", "г", "ғ", "д", "е", "ж", "з", "и", "й", "к", "қ", "л", "м", "н", "ң", "о", "ө", "п", "р", "с", "т", "у", "ұ", "ү", "ф", "х", "һ", "ц", "ч", "ш", "щ", "", "ы", "і", "", "э"],
+)
+__TOTE = (
+    ["ا", "ب", "ۆ", "گ", "ع", "د", "ە", "ج", "ز", "ي", "ك", "ق", "ل", "م", "ن", "ڭ", "و", "پ", "ر", "س", "ت", "ۋ", "ۇ", "ۇ", "ف", "ح", "ح", "س", "چ", "ش", "ش", "ى", "ى"],
+    ["a", "b", "v", "g", "ğ", "d", "e", "j", "z", "ï", "k", "q", "l", "m", "n", "ŋ", "o", "p", "r", "s", "t", "w", "u", "ü", "f", "h", "h", "c", "č", "š", "ş", "y", "i"],
+)
 
-def convert_cyril_to_lat(input):
-    return convert_to_latin(input)
-def convert_cyril_to_tote(input):
-    return latin_to_tote( convert_to_latin(input) )
+for i in range(0, len(__CYRILLIC[0])):
+    __CYRILLIC[0].append(__CYRILLIC[0][i].capitalize())
+    __CYRILLIC[1].append(__CYRILLIC[1][i].capitalize())
+    __CYRILLIC[2].append(__CYRILLIC[2][i].capitalize())
+for i in range(0, len(__LATIN[0])):
+    __LATIN[0].append(__LATIN[0][i].capitalize())
+    __LATIN[1].append(__LATIN[1][i].capitalize())
 
-def convert_lat_to_cyril(input):
-    return convert_to_cyrillic(input)
-def convert_lat_to_tote(input):
-    return latin_to_tote( convert_to_latin(input) )
+def convert_cyrillic_to_latin(text):
+    for i in range(0, len(__CYRILLIC[0])):
+        text = text.replace(__CYRILLIC[0][i], __CYRILLIC[1][i])
+    return text
+def convert_cyrillic_to_tote(text):
+    for i in range(0, len(__CYRILLIC[0])):
+        text = text.replace(__CYRILLIC[0][i], __CYRILLIC[2][i])
+    return text
 
-def convert_tote_to_cyril(input):
-    return convert_to_cyrillic( tote_to_latin(input) )
-def convert_tote_to_lat(input):
-    return tote_to_latin(input)
+def convert_latin_to_cyrillic(text):
+    for i in range(0, len(__LATIN[0])):
+        text = text.replace(__LATIN[0][i], __LATIN[1][i])
+    return text
+def convert_latin_to_tote(text):
+    text = convert_latin_to_cyrillic(text)
+    text = convert_cyrillic_to_tote(text)
+    return text
 
-# print(convert_cyril_to_lat('Қазақ тілі'))
-# print(convert_cyril_to_tote('Қазақ тілі'))
-# print(convert_lat_to_cyril('Qazaq tili'))
-# print(convert_lat_to_tote('Qazaq tili'))
-# print(convert_tote_to_cyril( cyril_to_tote('Қазақ тілі') ))
-# print(convert_tote_to_lat( cyril_to_tote('Қазақ тілі') ))
+def convert_tote_to_latin(text):
+    for i in range(0, len(__TOTE[0])):
+        text = text.replace(__TOTE[0][i], __TOTE[1][i])
+    return text
+def convert_tote_to_cyrillic(text):
+    text = convert_tote_to_latin(text)
+    text = convert_latin_to_cyrillic(text)
+    return text
