@@ -1,0 +1,9 @@
+echo "
+SET foreign_key_checks = 0;
+
+DROP TABLE IF EXISTS words;
+
+SET foreign_key_checks = 1;
+
+SELECT 'OK';
+" | mysql -h localhost -P 3306 -u root --database=translator --password=12345
