@@ -3,6 +3,7 @@ from flask import request, abort, render_template, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
+import uuid
 
 engine = create_engine('mysql+pymysql://{}:{}@{}:{}/{}'.format(os.environ["_MYSQL_USER"], os.environ["_MYSQL_PASSWORD"], os.environ["_MYSQL_HOST"], os.environ["_MYSQL_PORT"], os.environ["_APP_NAME"].lower()), echo=int(os.environ["FLASK_DEBUG"]))
 Session = sessionmaker(bind=engine)
@@ -15,7 +16,7 @@ session = Session()
 def hello():
     if request.method == 'GET':
         # return jsonify({'message': 'Hello!'})
-        return render_template('index.html')
+        return render_template('index.html', cache=uuid.uuid4())
     else:
         abort(404)
         # render_template('page_not_found.html'), 404
