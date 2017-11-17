@@ -58,3 +58,12 @@ export _HTTP_PORT=9000
 ```
 python3.6 migrate.py
 ```
+
+##### **Install front-end packages**
+```
+sudo npm install webpack --global &&\
+npm install &&\
+
+webpack
+# npm run server
+```

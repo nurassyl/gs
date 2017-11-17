@@ -10,7 +10,7 @@ def get_all_cyrillic_words(text):
 
 def get_all_latin_words(text):
     finded_words = list()
-    words = re.findall(r'([\'aäbvgğdejzïïkqlmnŋoöprstwuüfhhcčšşyi]+(\-[\'aäbvgğdejzïïkqlmnŋoöprstwuüfhhcčšşyi]+)?)', text, flags=re.I)
+    words = re.findall(r'([\'\`aäbvgğdejzïïkqlmnŋoöprstwuüfhhcčšşyi]+(\-[\'\`aäbvgğdejzïïkqlmnŋoöprstwuüfhhcčšşyi]+)?)', text, flags=re.I)
     for word in words:
         finded_words.append(word[0])
     del words

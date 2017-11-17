@@ -14,7 +14,8 @@ session = Session()
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     if request.method == 'GET':
-        return jsonify({'message': 'Hello!'})
+        # return jsonify({'message': 'Hello!'})
+        return render_template('index.html')
     else:
         abort(404)
         # render_template('page_not_found.html'), 404
