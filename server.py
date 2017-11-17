@@ -16,7 +16,7 @@ session = Session()
 def hello():
     if request.method == 'GET':
         # return jsonify({'message': 'Hello!'})
-        return render_template('index.html', cache=uuid.uuid4())
+        return render_template('index.html', uuid=uuid.uuid4())
     else:
         abort(404)
         # render_template('page_not_found.html'), 404
