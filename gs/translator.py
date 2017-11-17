@@ -6,7 +6,11 @@ from gs.utils import *
 def __translate(text, _dict, letters='cyrillic'):
     result = {
         'unknowns': list(),
-        'output': ''
+        'output': '',
+        'length': {
+            'words': None,
+            'unknowns': None
+        }
     }
 
     if letters == 'latin':
@@ -17,6 +21,7 @@ def __translate(text, _dict, letters='cyrillic'):
         words = get_all_cyrillic_words(text)
 
     words.sort(key = len, reverse=True)
+    result['length']['words'] = len(words)
 
     for word in words:
         try:
@@ -28,7 +33,8 @@ def __translate(text, _dict, letters='cyrillic'):
     
     if letters == 'tote':
         text = text.lower()
-
+    
+    result['length']['unknowns'] = len(result['unknowns'])
     result['output'] = text
     del text, _dict, words
     return result
