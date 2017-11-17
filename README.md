@@ -44,6 +44,7 @@ python3.6 server.py
 ```
 export _APP_NAME=GS
 export FLASK_DEBUG=1
+export NODE_ENV=development
 
 export _MYSQL_HOST=127.0.0.1
 export _MYSQL_PORT=3306
