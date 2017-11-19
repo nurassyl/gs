@@ -13,7 +13,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			converterSelection: 'cyrillic-latin',
-			input: 'Қазақ тілі',
+			input: '',
 			output: ''
 		}
 		this.translateHandle = this.translateHandle.bind(this);
@@ -21,9 +21,22 @@ class App extends React.Component {
 		this.converterSelectionChangeHandle = this.converterSelectionChangeHandle.bind(this);
 	}
 	translateHandle(e) {
-		this.setState({
-			output: this.state.input
-		});
+		var self = this
+		$.ajax({
+			url: '/',
+			method: 'post',
+			cache: false,
+			async: true,
+			data: {
+				converter: self.state.converterSelection,
+				input: self.state.input
+			},
+			success: function(response) {
+				self.setState({
+					output: response
+				});
+			}
+		})
 	}
 	inputChangeHandle(e) {
 		this.setState({

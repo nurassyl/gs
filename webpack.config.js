@@ -47,5 +47,5 @@ module.exports = {
 			Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
 		})
 	],
-	watch: (process.env.NODE_ENV == "development" ? true : false)
+	watch: (process.env.NODE_ENV === "development" ? true : false)
 }

@@ -68,3 +68,10 @@ npm install &&\
 webpack
 # npm run server
 ```
+
+##### **Run the webpack**
+
+```
+export NODE_ENV=development &&\
+webpack
+```
