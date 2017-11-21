@@ -1,5 +1,6 @@
 from gs.dictionary import *
 from gs.translator import *
+from gs.converter import *
 
 # 1 сөз = 100 байт.
 # 10 сөз = 1 Кбайт.
@@ -25,3 +26,8 @@ print(translate_latin_to_cyrillic('Qazaq tili', latin_cyrillic_dict))
 print(translate_latin_to_tote('Qazaq tili', latin_tote_dict))
 print(translate_tote_to_latin('قازاق تىلى', tote_latin_dict))
 print(translate_tote_to_cyrillic('قازاق تىلى', tote_cyrillic_dict))
+
+print(convert_cyrillic_to_latin('Ел'))
+print(convert_cyrillic_to_latin('Экономика'))
+print(convert_latin_to_cyrillic('Yel'))
+print(convert_latin_to_cyrillic('Ekonomïka'))

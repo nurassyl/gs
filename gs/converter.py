@@ -21,6 +21,10 @@ for i in range(0, len(__LATIN[0])):
     __LATIN[1].append(__LATIN[1][i].capitalize())
 
 def convert_cyrillic_to_latin(text):
+    if text[:1] == 'е':
+        text = 'ye'+text[1:]
+    if text[:1] == 'Е':
+        text = 'Ye'+text[1:]
     for i in range(0, len(__CYRILLIC[0])):
         text = text.replace(__CYRILLIC[0][i], __CYRILLIC[1][i])
     return text
@@ -30,6 +34,14 @@ def convert_cyrillic_to_tote(text):
     return text
 
 def convert_latin_to_cyrillic(text):
+    if text[:1] == 'e':
+        text = 'э'+text[1:]
+    elif text[:1] == 'E':
+        text = 'Э'+text[1:]
+    elif text[:2] == 'ye':
+        text = 'е'+text[2:]
+    elif text[:2] == 'Ye':
+        text = 'Е'+text[2:]
     for i in range(0, len(__LATIN[0])):
         text = text.replace(__LATIN[0][i], __LATIN[1][i])
     return text
